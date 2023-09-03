@@ -6,7 +6,7 @@ class Env {
     if (!value) throw new EnvError(key, "not set")
     return value
   }
-  getInt(key: string, defaultValue: number) {
+  getInt(key: string, defaultValue?: number) {
     const value = Number(this.get(key, defaultValue))
     if (!Number.isInteger(value)) throw new EnvError(key, "not int")
     return value
