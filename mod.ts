@@ -1,4 +1,4 @@
-import env from "https://deno.land/x/parse_env@v0.0.3/mod.ts"
+import env from "./env.ts"
 
 type AnyFunction = (...args: any[]) => any
 type ResponseData = { ok: boolean; error?: string; result?: object }
@@ -22,4 +22,4 @@ function filterFalsy<T>(array: (T | undefined | null)[]): T[] {
 }
 
 export { env, error, exclude, filterFalsy, log }
-export type { AnyFunction, ResponseData, Class }
+export type { AnyFunction, Class, ResponseData }

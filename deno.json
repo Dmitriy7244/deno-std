@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "dev": "deno test -A mod.ts",
+    "lint": "deno fmt && lint && deno check mod.ts",
+    "reload": "deno run -A --reload mod.ts"
+  },
+  "fmt": {
+    "semiColons": false
+  },
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  },
+  "lint": { "rules": { "exclude": ["no-explicit-any"] } }
+}
