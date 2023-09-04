@@ -4,17 +4,19 @@ type AnyFunction = (...args: any[]) => any
 type ResponseData = { ok: boolean; error?: string; result?: object }
 type Class<T = any> = new (...args: any) => T
 
-function log(header: string, data?: object) {
-  console.log(`${header}:`, data)
+function log(msg: string, data?: object) {
+  if (data) console.log(`${msg}:`, data)
+  else console.log(msg)
 }
 
-function exclude<T>(array: T[], value: T) {
-  return array.filter((item) => item !== value)
+function error(msg: string, data?: object): never {
+  if (data) console.error(`${msg}:`, data)
+  else console.error(msg)
+  throw new Error(msg)
 }
 
-function error(header: string, data?: object): never {
-  console.error(`${header}:`, data)
-  throw new Error(header)
+function exclude<T>(array: T[], values: T[]) {
+  return array.filter((item) => !values.includes(item))
 }
 
 function filterFalsy<T>(array: (T | undefined | null)[]): T[] {
