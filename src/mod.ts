@@ -1,4 +1,4 @@
-import env from "./env.ts"
+import env, { Env } from "./env.ts"
 
 type AnyFunction = (...args: any[]) => any
 type ResponseData = { ok: boolean; error?: string; result?: object }
@@ -21,5 +21,5 @@ function filterFalsy<T>(array: (T | undefined | null)[]): T[] {
   return array.filter((i) => i != null) as T[]
 }
 
-export { env, error, exclude, filterFalsy, log }
+export { Env, env, error, exclude, filterFalsy, log }
 export type { AnyFunction, Class, ResponseData }

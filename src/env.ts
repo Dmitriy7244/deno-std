@@ -1,8 +1,17 @@
-import "https://deno.land/std@0.182.0/dotenv/load.ts"
+import { loadEnv } from "./deps.ts"
 
 class Env {
+  private data: Record<string, string>
+
+  constructor(path = ".env") {
+    this.data = loadEnv({
+      envPath: path,
+      examplePath: path.replace(".env", ".example.env"),
+    })
+  }
+
   get<T>(key: string, defaultValue?: T) {
-    const value = Deno.env.get(key) ?? defaultValue
+    const value = this.data[key] ?? defaultValue
     if (!value) throw new EnvError(key, "not set")
     return value
   }
@@ -21,3 +30,4 @@ class EnvError extends Error {
 
 const env = new Env()
 export default env
+export { Env }
